@@ -43,6 +43,17 @@ export class CustomersService {
     return customer;
   }
 
+  async findByName(name: string) {
+    const result = await this.prisma.customer.findMany({
+      where: {
+        name: {
+          contains: name,
+        },
+      },
+    });
+    return result;
+  }
+
   async update(id: number, data: UpdateCustomerDto) {
     const customerExists = await this.prisma.customer.findFirst({
       where: {

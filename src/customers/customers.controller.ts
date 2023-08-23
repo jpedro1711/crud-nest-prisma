@@ -33,6 +33,12 @@ export class CustomersController {
     return customer;
   }
 
+  @Get('/name/:name')
+  findByName(@Param('name') name: string) {
+    const result = this.customersService.findByName(name);
+    return result;
+  }
+
   @Put(':id')
   update(
     @Param('id') id: string,
